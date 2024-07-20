@@ -1,0 +1,50 @@
+{
+	"name": "bun-plugin-glob-import",
+	"type": "module",
+	"version": "1.0.0",
+	"description": "A Bun plugin that enables importing modules using glob patterns",
+	"author": "ttempaa <ttempaa.mt@gmail.com>",
+	"license": "MIT",
+	"homepage": "https://github.com/ttempaa/bun-plugin-glob-import#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ttempaa/bun-plugin-glob-import.git"
+	},
+	"bugs": {
+		"url": "https://github.com/ttempaa/bun-plugin-glob-import/issues"
+	},
+	"keywords": [
+		"bun",
+		"plugin",
+		"bun-plugin",
+		"loader",
+		"glob",
+		"import",
+		"typescript"
+	],
+	"files": [
+		"dist",
+		"source"
+	],
+	"types": "./dist/index.d.ts",
+	"module": "./dist/index.js",
+	"exports": {
+		".": {
+			"bun": "./source/index.ts",
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js"
+		},
+		"./register": "./source/register.ts"
+	},
+	"scripts": {
+		"build": "bun run scripts/build.ts",
+		"prepublishOnly": "bun run build",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.1.6"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	}
+}

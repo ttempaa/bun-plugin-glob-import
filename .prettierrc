@@ -4,5 +4,14 @@
 	"useTabs": true,
 	"semi": true,
 	"singleQuote": true,
-	"trailingComma": "es5"
+	"trailingComma": "es5",
+	"overrides": [
+		{
+			"files": "*.md",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
+		}
+	]
 }

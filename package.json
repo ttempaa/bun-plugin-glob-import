@@ -37,8 +37,6 @@
 		"./register": "./source/register.ts"
 	},
 	"scripts": {
-		"build": "bun run scripts/build.ts",
-		"prepublishOnly": "bun run build",
 		"typecheck": "tsc --noEmit"
 	},
 	"devDependencies": {

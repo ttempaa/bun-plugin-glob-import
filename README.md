@@ -39,7 +39,7 @@ src/
 └── index.ts
 ```
 
-### Example Command: `create.ts`
+The following is the code for `create.ts` and other commands follow a similar structure:
 
 ```ts
 export default function create() {
@@ -47,9 +47,7 @@ export default function create() {
 }
 ```
 
-### Importing Files
-
-You can import the files using a glob pattern like this:
+You can import the files using a glob pattern in your `index.ts`:
 
 ```ts
 import commands from './commands/**/*.ts';

@@ -65,7 +65,7 @@ console.log(commands);
 ] */
 ```
 
-### Type Definitions
+## Type Definitions
 
 To avoid TypeScript errors when importing with a glob pattern, add the types to your `tsconfig.json`:
 

@@ -34,7 +34,10 @@
 			"types": "./dist/index.d.ts",
 			"import": "./dist/index.js"
 		},
-		"./register": "./source/register.ts"
+		"./register": "./source/register.ts",
+		"./types": [
+			"./source/globals.d.ts"
+		]
 	},
 	"scripts": {
 		"typecheck": "tsc --noEmit"

@@ -1,5 +1,5 @@
 import { plugin } from 'bun';
 import { getPlugin } from './plugin';
 
-// Currently not working :<
+// Works with dynamic import :>
 await plugin(getPlugin());

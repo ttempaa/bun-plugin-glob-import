@@ -12,7 +12,9 @@ bun add -d bun-plugin-glob-import
 
 ## Usage
 
-To use the plugin, add it to the build options:
+### As a Bundler Plugin
+
+To use the plugin as a bundler plugin, add it to the build options:
 
 ```ts
 import { globImportPlugin } from 'bun-plugin-glob-import';
@@ -20,6 +22,16 @@ import { globImportPlugin } from 'bun-plugin-glob-import';
 await Bun.build({
   plugins: [globImportPlugin()],
 });
+```
+
+### As a Runtime Plugin
+
+To use the plugin as a runtime plugin, register it in your `bunfig.toml` file:
+
+```toml
+preload = [
+    "bun-plugin-glob-import/register"
+]
 ```
 
 ## Example
@@ -47,10 +59,14 @@ export default function create() {
 }
 ```
 
-You can import the files using a glob pattern in your `index.ts`:
+You can import files using glob patterns in your `index.ts` file. The way you perform the import depends on whether you are using the plugin as a bundler plugin or a runtime plugin.
 
 ```ts
+// Only supported when using as a bundler plugin
 import commands from './commands/**/*.ts';
+
+// Supported for both runtime and bundler plugin usage
+const { default: commands } = await import('./commands/**/*.ts');
 
 console.log(commands);
 /* => [

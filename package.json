@@ -1,7 +1,7 @@
 {
 	"name": "bun-plugin-glob-import",
 	"type": "module",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A Bun plugin that enables importing modules using glob patterns",
 	"author": "ttempaa <ttempaa.mt@gmail.com>",
 	"license": "MIT",

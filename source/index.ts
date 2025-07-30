@@ -1,5 +1,5 @@
-import { type BunPlugin } from 'bun';
-import { getPlugin } from './plugin';
+import type { BunPlugin } from "bun";
+import { getPlugin } from "./plugin";
 
 const globImportPlugin = (): BunPlugin => getPlugin();
 

@@ -24,6 +24,7 @@ jobs:
         run: bun install --frozen-lockfile
         
       - name: Check version matches tag
+        if: github.event_name == 'release'
         run: |
           TAG_VERSION="${GITHUB_REF##*/}"
           PKG_VERSION="v$(jq -r .version package.json)"

@@ -2,7 +2,7 @@
 
 This plugin allows you to import modules using glob patterns.
 
-[![npm](https://img.shields.io/npm/v/bun-plugin-glob-import.svg)](https://www.npmjs.com/package/esbuildbun-plugin-glob-import)
+[![npm](https://img.shields.io/npm/v/bun-plugin-glob-import.svg)](https://www.npmjs.com/package/bun-plugin-glob-import)
 [![npm](https://img.shields.io/npm/dt/bun-plugin-glob-import.svg)](https://www.npmjs.com/package/bun-plugin-glob-import)
 [![npm](https://img.shields.io/npm/l/bun-plugin-glob-import.svg)](https://www.npmjs.com/package/bun-plugin-glob-import)
 
@@ -18,7 +18,7 @@ bun add -d bun-plugin-glob-import
 
 ### As a Bundler Plugin
 
-To use the plugin as a bundler plugin, add it to the build options:
+Add the plugin to your build configuration:
 
 ```ts
 import { globImportPlugin } from 'bun-plugin-glob-import';
@@ -30,17 +30,15 @@ await Bun.build({
 
 ### As a Runtime Plugin
 
-To use the plugin as a runtime plugin, register it in your `bunfig.toml` file:
+Register the plugin in your bunfig.toml to use it at runtime:
 
 ```toml
-preload = [
-    "bun-plugin-glob-import/register"
-]
+preload = ["bun-plugin-glob-import/register"]
 ```
 
 ## Example
 
-Suppose you have the following file structure:
+Imagine a project with the following file structure:
 
 ```
 src/
@@ -55,7 +53,7 @@ src/
 └── index.ts
 ```
 
-The following is the code for `create.ts` and other commands follow a similar structure:
+Each command file, like `create.ts`, has a default export:
 
 ```ts
 export default function create() {
@@ -63,14 +61,14 @@ export default function create() {
 }
 ```
 
-You can import files using glob patterns in your `index.ts` file. The way you perform the import depends on whether you are using the plugin as a bundler plugin or a runtime plugin.
+In your `index.ts` file, you can import these modules using a glob pattern. The plugin provides the result in two formats: a simple array or a path-keyed object.
+
+### Import as an Array
+
+Using the default export, you get an array of all imported modules. This is useful when you just need to iterate over them without referencing their original file paths.
 
 ```ts
-// Only supported when using as a bundler plugin
 import commands from './commands/**/*.ts';
-
-// Supported for both runtime and bundler plugin usage
-const { default: commands } = await import('./commands/**/*.ts');
 
 console.log(commands);
 /* => [
@@ -81,6 +79,33 @@ console.log(commands);
   { default: [Function: list] },
   { default: [Function: ping] },
 ] */
+```
+
+### Import as an Object
+
+Using the named export `asObject`, you get an object where keys are the relative file paths and values are the modules. This is ideal when you need to map modules back to their source files.
+
+```ts
+import { asObject as commands } from './commands/**/*.ts';
+
+console.log(commands);
+/* => {
+  'commands/update.ts': { default: [Function: update] },
+  'commands/get.ts': { default: [Function: get] },
+  'commands/create.ts': { default: [Function: create] },
+  'commands/delete.ts': { default: [Function: delete] },
+  'commands/special/list.ts': { default: [Function: list] },
+  'commands/special/ping.ts': { default: [Function: ping] }
+} */
+```
+
+## Important Note on Import Syntax
+
+The static `import ... from ...` syntax is processed at build time and works perfectly when using the Bun bundler.
+For runtime usage (with preload) or for code that should work universally in both environments, you **must** use a dynamic import:
+
+```ts
+const { default: commands, asObject } = await import('./commands/**/*.ts');
 ```
 
 ## Type Definitions

@@ -42,9 +42,12 @@
 	"scripts": {
 		"build": "bun run scripts/build.ts",
 		"prepublishOnly": "bun run scripts/build.ts",
-		"typecheck": "tsc --noEmit"
+		"typecheck": "tsc --noEmit",
+		"lint": "biome check ./source",
+		"lint:fix": "biome check --write ./source"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^2.1.3",
 		"@types/bun": "^1.1.6"
 	},
 	"peerDependencies": {

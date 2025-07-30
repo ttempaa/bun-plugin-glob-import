@@ -1,13 +1,13 @@
-export {};
+type ImportedModule = Record<string, unknown>;
 
-declare global {
-	module '*.ts' {
-		const value: Record<string, unknown>[];
-		export default value;
-	}
+declare module "*.ts" {
+	const value: ImportedModule[];
+	export default value;
+	export const asObject: Record<string, ImportedModule>;
+}
 
-	module '*.js' {
-		const value: Record<string, unknown>[];
-		export default value;
-	}
+declare module "*.js" {
+	const value: ImportedModule[];
+	export default value;
+	export const asObject: Record<string, ImportedModule>;
 }

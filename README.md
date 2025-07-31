@@ -30,7 +30,7 @@ await Bun.build({
 
 ### As a Runtime Plugin
 
-Register the plugin in your bunfig.toml to use it at runtime:
+Register the plugin in your `bunfig.toml` to use it at runtime:
 
 ```toml
 preload = ["bun-plugin-glob-import/register"]

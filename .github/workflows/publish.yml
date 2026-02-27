@@ -20,6 +20,12 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+
       - name: Install dependencies
         run: bun install --frozen-lockfile
         
@@ -41,4 +47,4 @@ jobs:
 
       # TODO: switch to `bun publish` once it supports OIDC/provenance
       - name: Publish to NPM
-        run: bunx npm publish --provenance --access public
+        run: npm publish --provenance --access public

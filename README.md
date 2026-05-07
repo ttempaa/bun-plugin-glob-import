@@ -99,15 +99,6 @@ console.log(commands);
 } */
 ```
 
-## Important Note on Import Syntax
-
-The static `import ... from ...` syntax is processed at build time and works perfectly when using the Bun bundler.
-For runtime usage (with preload) or for code that should work universally in both environments, you **must** use a dynamic import:
-
-```ts
-const { default: commands, asObject } = await import('./commands/**/*.ts');
-```
-
 ## Type Definitions
 
 To avoid TypeScript errors when importing with a glob pattern, add the types to your `tsconfig.json`:

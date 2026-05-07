@@ -13,6 +13,7 @@ import { basicGlobFixture } from "./fixtures/basicGlob";
 import { emptyGlobFixture } from "./fixtures/emptyGlob";
 import { multiImportFixture } from "./fixtures/multiImport";
 import { recursiveAndCollisionFixture } from "./fixtures/recursiveAndCollision";
+import { staticImportFixture } from "./fixtures/staticImport";
 import {
 	cleanupTestEnvironment,
 	setupTestEnvironment,
@@ -23,6 +24,7 @@ const testScenarios = [
 	basicGlobFixture,
 	recursiveAndCollisionFixture,
 	multiImportFixture,
+	staticImportFixture,
 ];
 
 afterAll(cleanupTestEnvironment);

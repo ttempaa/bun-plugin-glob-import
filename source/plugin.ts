@@ -21,6 +21,14 @@ export const getPlugin = (): BunPlugin => ({
 			return { path, namespace };
 		});
 
+		build.onResolve({ filter: /^glob:/, namespace }, async (args) => {
+			const importData = imports.get(args.path);
+			if (!importData) {
+				return;
+			}
+			return { path: args.path, namespace };
+		});
+
 		build.onLoad({ filter: /^glob:/, namespace }, async (args) => {
 			const importData = imports.get(args.path);
 			if (!importData) {
